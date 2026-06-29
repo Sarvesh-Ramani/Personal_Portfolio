@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  
+  --color-primary: #ffffff;
+  --color-secondary: #a3a3a3;
+  --color-border-custom: #1a1a1a;
+  
+  --font-sans: var(--font-geist-sans), var(--font-inter), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+:root {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Accessibility: Keyboard outline styling */
+:focus-visible {
+  outline: 1px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* Scroll padding for fixed header so target sections aren't cut off */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* Custom fade-in for page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-entrance {
+  animation: fadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
