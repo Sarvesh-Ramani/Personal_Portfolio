@@ -13,21 +13,30 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col space-y-10"
+        className="flex flex-col space-y-8"
       >
-        <h1 className="text-white text-5xl sm:text-7xl md:text-[80px] lg:text-[96px] font-semibold tracking-tight leading-[1.05] max-w-[850px]">
-          Software Engineer.
-          <span className="block text-secondary">
-            Building enterprise systems and AI-powered products.
-          </span>
-          <span className="block text-secondary font-normal text-3xl sm:text-4xl md:text-5xl mt-6">
-            Currently solving complex customer problems at AppViewX.
-          </span>
-        </h1>
+        <div className="flex flex-col space-y-4">
+          <div className="flex">
+            <span className="inline-flex items-center text-xs font-mono text-accent bg-accent/5 border border-accent/20 px-3 py-1 rounded-full uppercase tracking-wider">
+              3+ years building production PKI & enterprise systems
+            </span>
+          </div>
+          <h1 className="text-white text-5xl sm:text-7xl md:text-[80px] lg:text-[96px] font-semibold tracking-tight leading-[1.05] max-w-[850px]">
+            Software Engineer.
+            <span className="block text-secondary">
+              Building enterprise systems and AI-powered products.
+            </span>
+          </h1>
+        </div>
+
+        <p className="text-secondary font-normal text-lg sm:text-2xl md:text-3xl max-w-[750px] leading-relaxed">
+          Currently a <span className="text-white font-medium">Software Development Engineer II at AppViewX</span>, based in Chennai, India, focusing on security and scalability.
+        </p>
+
         <div className="pt-4">
           <a
             href="#work"
-            className="group inline-flex items-center text-white text-base sm:text-lg font-medium focus-visible:outline-white"
+            className="group inline-flex items-center text-accent hover:text-accent-hover text-base sm:text-lg font-semibold focus-visible:outline-accent"
           >
             View Work
             <span

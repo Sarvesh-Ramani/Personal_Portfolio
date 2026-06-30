@@ -23,30 +23,34 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sarvesh Ramani — Software Engineer",
+  title: "Sarvesh Ramani — Software Development Engineer II",
   description:
-    "Software Engineer building enterprise systems and AI-powered products. Currently solving complex customer problems at AppViewX.",
+    "Software Development Engineer II at AppViewX building secure enterprise PKI systems, scalable backends, and AI integrations. M.Tech AI/ML candidate at BITS Pilani.",
   authors: [{ name: "Sarvesh Ramani" }],
   keywords: [
     "Sarvesh Ramani",
-    "Software Engineer",
+    "Software Development Engineer II",
     "AppViewX",
+    "BITS Pilani M.Tech",
     "Backend Engineer",
+    "PKI Developer",
+    "Digital Certificates Security",
+    "LIGO Gravitational Wave Glitch",
     "Enterprise Systems",
-    "AI Products",
+    "AI Products Developer",
   ],
   openGraph: {
-    title: "Sarvesh Ramani — Software Engineer",
+    title: "Sarvesh Ramani — Software Development Engineer II",
     description:
-      "Software Engineer building enterprise systems and AI-powered products. Currently solving complex customer problems at AppViewX.",
+      "Software Development Engineer II at AppViewX building secure enterprise PKI systems, scalable backends, and AI integrations.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
-    card: "summary",
-    title: "Sarvesh Ramani — Software Engineer",
+    card: "summary_large_image",
+    title: "Sarvesh Ramani — Software Development Engineer II",
     description:
-      "Software Engineer building enterprise systems and AI-powered products. Currently solving complex customer problems at AppViewX.",
+      "Software Development Engineer II at AppViewX building secure enterprise PKI systems, scalable backends, and AI integrations.",
   },
   robots: {
     index: true,
