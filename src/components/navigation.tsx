@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { Container } from "./container";
+import { motion } from "framer-motion";
+import { Magnetic } from "./magnetic";
 
 const NAV_ITEMS = [
   { label: "Work", href: "#work" },
@@ -56,14 +58,16 @@ export function Navigation() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-border-custom transition-all duration-300">
       <Container>
         <div className="flex h-16 items-center justify-between">
-          <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, "hero")}
-            className="text-white font-mono font-semibold text-xs tracking-widest hover:text-accent transition-colors focus-visible:outline-accent"
-            aria-label="Sarvesh Ramani — Go to Hero"
-          >
-            SARVESH RAMANI
-          </a>
+          <Magnetic range={40} strength={0.2}>
+            <a
+              href="#hero"
+              onClick={(e) => handleNavClick(e, "hero")}
+              className="text-white font-mono font-semibold text-xs tracking-widest hover:text-accent transition-colors focus-visible:outline-accent py-2 block"
+              aria-label="Sarvesh Ramani — Go to Hero"
+            >
+              SARVESH RAMANI
+            </a>
+          </Magnetic>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -71,19 +75,24 @@ export function Navigation() {
               const itemId = item.href.substring(1);
               const isActive = activeSection === itemId;
               return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, itemId)}
-                  className={`text-sm font-medium tracking-wide transition-all duration-200 focus-visible:outline-accent relative py-2 ${
-                    isActive ? "text-accent" : "text-secondary hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent rounded-full shadow-[0_0_8px_rgba(6,182,212,0.6)]" />
-                  )}
-                </a>
+                <Magnetic key={item.label} range={40} strength={0.25}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, itemId)}
+                    className={`text-sm font-medium tracking-wide transition-all duration-200 focus-visible:outline-accent relative py-2 block ${
+                      isActive ? "text-accent" : "text-secondary hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeSectionUnderline"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent rounded-full shadow-[0_0_8px_rgba(6,182,212,0.6)]"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                </Magnetic>
               );
             })}
           </nav>

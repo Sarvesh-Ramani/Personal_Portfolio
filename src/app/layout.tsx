@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { CustomCursor } from "@/components/custom-cursor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -69,6 +70,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-black text-white font-sans selection:bg-white selection:text-black">
+        <CustomCursor />
         {children}
         <Analytics />
         <SpeedInsights />

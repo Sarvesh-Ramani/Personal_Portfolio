@@ -16,7 +16,7 @@ export function ExperienceItem({
   points,
 }: ExperienceItemProps) {
   return (
-    <article className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 first:pt-0 last:pb-0">
+    <article className="reveal-item grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-8 first:pt-0 last:pb-0">
       <div className="text-secondary text-xs sm:text-sm font-mono tracking-wider pt-1.5 flex flex-col">
         <span>{period}</span>
         {location && <span className="text-[10px] sm:text-xs text-zinc-500 mt-1">{location}</span>}

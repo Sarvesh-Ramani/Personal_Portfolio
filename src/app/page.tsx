@@ -1,4 +1,6 @@
 import React from "react";
+import fs from "fs";
+import path from "path";
 import { Navigation } from "@/components/navigation";
 import { Hero } from "@/components/hero";
 import { Container } from "@/components/container";
@@ -7,9 +9,17 @@ import { Divider } from "@/components/divider";
 import { ProjectItem } from "@/components/project-item";
 import { ExperienceItem } from "@/components/experience-item";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { StatCounter } from "@/components/stat-counter";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
+  // Check if portfolio cutout photo exists on server at build time
+  // TODO: Once you add your cutout photos to /public/images/sarvesh-cutout.webp / .png,
+  // this check will automatically render the beautiful floating 3D parallax layout.
+  const photoPathWebp = path.join(process.cwd(), "public", "images", "sarvesh-cutout.webp");
+  const photoPathPng = path.join(process.cwd(), "public", "images", "sarvesh-cutout.png");
+  const photoExists = fs.existsSync(photoPathWebp) || fs.existsSync(photoPathPng);
+
   return (
     <>
       <Navigation />
@@ -17,7 +27,7 @@ export default function Home() {
       <main className="flex-grow bg-background text-foreground relative pt-16">
         <Container>
           {/* Hero Section */}
-          <Hero />
+          <Hero photoExists={photoExists} />
 
           {/* Selected Work Section */}
           <ScrollReveal>
@@ -74,7 +84,7 @@ export default function Home() {
                 Skills & Tech Stack
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex flex-col space-y-3">
+                <div className="reveal-item flex flex-col space-y-3">
                   <h3 className="text-accent font-mono text-xs uppercase tracking-wider">{"// Backend"}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["Java 21", "Spring Boot", "REST APIs", "Python", "JavaScript", "PowerShell"].map((skill) => (
@@ -88,7 +98,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col space-y-3">
+                <div className="reveal-item flex flex-col space-y-3">
                   <h3 className="text-accent font-mono text-xs uppercase tracking-wider">{"// PKI & Security"}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["Certificate Lifecycle Management", "Digital Certificates", "PKI", "CA Integration"].map((skill) => (
@@ -102,7 +112,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col space-y-3">
+                <div className="reveal-item flex flex-col space-y-3">
                   <h3 className="text-accent font-mono text-xs uppercase tracking-wider">{"// AI / ML"}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["TensorFlow", "Scikit-learn", "CNN Architectures", "Deep Learning", "Data Preprocessing & Augmentation"].map((skill) => (
@@ -116,7 +126,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col space-y-3">
+                <div className="reveal-item flex flex-col space-y-3">
                   <h3 className="text-accent font-mono text-xs uppercase tracking-wider">{"// Data & Infra"}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["MongoDB", "Data Pipelines", "Query Optimization", "Docker", "Kubernetes", "AWS (Fundamentals)", "Git/GitHub"].map((skill) => (
@@ -141,6 +151,26 @@ export default function Home() {
               <h2 className="text-white text-3xl font-medium tracking-tight mb-16">
                 Experience
               </h2>
+
+              {/* Standout stat counters row */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+                <StatCounter
+                  targetValue={92}
+                  suffix="%"
+                  label="LIGO wave glitch classification accuracy"
+                />
+                <StatCounter
+                  targetValue={20}
+                  suffix="+"
+                  label="Secure REST APIs engineered"
+                />
+                <StatCounter
+                  targetValue={100}
+                  suffix="%"
+                  label="On-time delivery for client releases"
+                />
+              </div>
+
               <div className="flex flex-col space-y-8">
                 <ExperienceItem
                   period="Aug 2023 — Present"
@@ -193,7 +223,7 @@ export default function Home() {
                 Education & Awards
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="space-y-8">
+                <div className="reveal-item space-y-8">
                   <h3 className="text-accent font-mono text-xs uppercase tracking-wider">{"// Education"}</h3>
 
                   <div className="space-y-8">
@@ -214,7 +244,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="space-y-8">
+                <div className="reveal-item space-y-8">
                   <h3 className="text-accent font-mono text-xs uppercase tracking-wider">{"// Recognition & Certifications"}</h3>
 
                   <div className="space-y-6">
@@ -265,13 +295,13 @@ export default function Home() {
                 About
               </h2>
               <div className="space-y-6 text-secondary text-base sm:text-lg leading-relaxed max-w-[680px]">
-                <p>
+                <p className="reveal-item">
                   I am a software engineer specializing in building high-performance backend systems, enterprise-grade security structures, and robust AI integrations. As an SDE II at AppViewX, I operate as a <span className="text-white font-medium">SWAT Engineer</span> — acting as the primary escalation point for critical P1/P2 incidents for global banks, healthcare networks, and Fortune 500 systems. This role demands a calm, analytical approach under intense pressure to deliver rapid root-cause resolutions.
                 </p>
-                <p>
+                <p className="reveal-item">
                   Driven by a deep interest in intelligence systems, I am currently pursuing an <span className="text-white font-medium">M.Tech in Artificial Intelligence & Machine Learning at BITS Pilani</span> alongside my full-time engineering work. I actively bridge the gap between software engineering and ML by integrating advanced LLM agents like Copilot and Claude to optimize developer velocity, reducing log triage and manual workflows by 30%.
                 </p>
-                <p>
+                <p className="reveal-item">
                   Whether designing secure PKI pipelines or training computer vision models, my focus is writing clean, resilient, and audit-ready code. Outside of technology, you can find me playing football or capturing moments through my camera lens.
                 </p>
               </div>
@@ -287,18 +317,18 @@ export default function Home() {
                 Contact
               </h2>
               <div className="flex flex-col space-y-8">
-                <p className="text-secondary text-base sm:text-lg max-w-[600px] leading-relaxed">
+                <p className="reveal-item text-secondary text-base sm:text-lg max-w-[600px] leading-relaxed">
                   I am always open to discussing backend architectures, digital security, PKI implementations, or AI/ML workloads.
                 </p>
 
-                <div className="flex items-center space-x-2">
+                <div className="reveal-item flex items-center space-x-2">
                   <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
                   <span className="text-accent font-mono text-xs tracking-wider uppercase">
                     Open to backend & AI engineering conversations
                   </span>
                 </div>
 
-                <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 text-base font-normal">
+                <div className="reveal-item flex flex-wrap gap-x-8 gap-y-4 pt-4 text-base font-normal">
                   <a
                     href="https://github.com/Sarvesh-Ramani"
                     target="_blank"
